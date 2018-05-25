@@ -22,6 +22,7 @@ nano data/config.ini
 
 ```
 ...
+# P2P nodes to connect to on startup (may specify multiple times)
 seed-node = testnet-seed-0.gravityprotocol.org:10111
 seed-node = testnet-seed-1.gravityprotocol.org:4623
 seed-node = testnet-seed-2.gravityprotocol.org:4623
@@ -32,8 +33,6 @@ seed-node = testnet-seed-6.gravityprotocol.org:4623
 seed-node = testnet-seed-7.gravityprotocol.org:4623
 seed-node = testnet-seed-8.gravityprotocol.org:4623
 ...
-# P2P nodes to connect to on startup (may specify multiple times)
-# P2P nodes to connect to on startup (may specify multiple times)
 ```
 
 Save changes and exit

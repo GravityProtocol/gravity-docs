@@ -10,7 +10,7 @@ cd witness_node
 
 2. Run the node for the first time to create data directory
 ```
-./witness_node --data-dir=data
+./witness_node --data-dir=data --resync-blockchain
 ```
 
 3. Stop the node pressing Ctrl+C and open config.ini
@@ -39,7 +39,7 @@ Save changes and exit
 
 5. Run the node again
 ```
-./witness_node --data-dir=data
+./witness_node --data-dir=data --resync-blockchain
 ```
 
 Node will start synchronization with the network, it can take from several minutes to several hours depending on the current blockchain length

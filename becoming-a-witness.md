@@ -20,7 +20,7 @@ docker-compose stop
 
 4. Run the command line wallet connected to your node to create a witness
 ```
-docker-compose exec gravity_node cli_wallet
+docker-compose exec gravity_node cli_wallet -w /var/lib/gravity/wallet.json
 set_password somehardpassword
 unlock somehardpassword
 import_key "accountName like g9320b3400s1180y4450" privateKeyStartingWithZGV

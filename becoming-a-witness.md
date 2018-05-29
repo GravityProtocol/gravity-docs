@@ -31,7 +31,7 @@ get_witness ""accountName like g9320b3400s1180y4450"
 Copy the witness id and block_signing_key from get_witness  
 Get the private signing key
 ```
-block_signing_key yourPublicSigningKey
+get_private_key yourPublicSigningKey
 ```
 
 5. Exit the cli_wallet with Ctrl+C, stop the node with ```docker-compose stop```, and open config.ini

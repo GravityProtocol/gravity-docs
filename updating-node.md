@@ -36,7 +36,7 @@ To avoid missing the blocks, witnesses have to use the backup node
 ```
 docker-compose exec gravity_node cli_wallet -w /var/lib/gravity/wallet.json
 unlock myPassword
-derive_owner_keys_from_brain_key "your brain key for backup signing keys" 1
+suggest_brain_key
 ```
 
 2\. Deploy the backup node on the backup machine, following instructions from [docker tutorial](https://github.com/GravityProtocol/gravity-docs/blob/master/running%20node%20with%20docker.md)

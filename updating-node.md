@@ -24,7 +24,7 @@ docker-compose pull
 
 5\. Start the node
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 

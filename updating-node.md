@@ -43,7 +43,7 @@ suggest_brain_key
 
 3\. Edit the config.ini
 ```
-nano data/config.ini
+sudo nano data/config.ini
 ```
 Add your witness id and the backup signing keys pair
 ```

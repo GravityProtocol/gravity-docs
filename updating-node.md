@@ -1,33 +1,5 @@
 # Updating the node (docker)
 
-**Non-witnesses:**
-
-1\. Enter the folder containing the node
-```
-cd gravity-testnet-docker
-```
-
-2\. Stop the node
-```
-docker-compose down
-```
-
-3\. Pull the changes from github
-```
-git pull origin
-```
-
-4\. Pull the new version package from hub.docker
-```
-docker-compose pull
-```
-
-5\. Start the node
-```
-docker-compose up -d
-```
-
-
 **Witnesses:**
 
 To avoid missing the blocks, witnesses have to use the backup node
@@ -67,7 +39,7 @@ update_witness g1234r1234v1234z1234 "my url" ZGV...backupSigningPublicKey true
 ```
 Make sure that block production continued from your witness
 
-6\. Update your main node in the same way as the non-witnesses
+6\. Update your main node in the same way as the non-witnesses (see below)  
 Wait for synchronization after update
 
 7\. Switch your witness back to its main witness key
@@ -75,3 +47,30 @@ Wait for synchronization after update
 update_witness g1234r1234v1234z1234 "my url" ZGV...mainSigningPublicKey true
 ```
 Make sure that block production continued from your witness
+
+**Non-witnesses:**
+
+1\. Enter the folder containing the node
+```
+cd gravity-testnet-docker
+```
+
+2\. Stop the node
+```
+docker-compose down
+```
+
+3\. Pull the changes from github
+```
+git pull origin
+```
+
+4\. Pull the new version package from hub.docker
+```
+docker-compose pull
+```
+
+5\. Start the node
+```
+docker-compose up -d
+```

@@ -20,7 +20,7 @@ docker-compose up -d
 without docker:
 ```
 Ctrl+C
-./witness_node --data-dir=data --resync
+./witness_node --data-dir=data --resync-blockchain
 ```
 Wait for synchronization after update
 
@@ -45,6 +45,6 @@ docker-compose up -d
 without docker:
 ```
 Ctrl+C
-./witness_node --data-dir=data --resync
+./witness_node --data-dir=data --resync-blockchain
 ```
 Wait for synchronization after update

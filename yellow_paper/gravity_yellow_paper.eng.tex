@@ -40,7 +40,7 @@ The problem of a distributed consensus for networks with potentially fraudulent 
 
 % Задача распределенного консенсуса для сетей, в которых узлы могут быть злоумышленниками (т.н. задача византийских генералов), впервые была сформулирована задолго до появления блокчейна - в 1982 г. \cite{Lamport} С тех пор был разработан целый ряд различных вариантов ее решения \cite{Castro}, однако применительно к блокчейнам первым вариантом решения проблемы стал изложенный в статье Сатоши Накамото \cite{satoshi} алгоритм Proof-of-Work (PoW, доказательство работы). Несмотря на свои преимущества PoW характеризуется рядом недостатков: проблемы с масштабируемостью и производительностью \cite{Croman}, безопасностью \cite{Eyal}, постепенная централизация сети в руках крупнейших майнинг-пулов \cite{Buterin}, и самое важное - необходимость использования значительного объема реальных ресурсов (электроэнергии и вычислительной техники) для генерации каждого \cite{Bentov}.
 
-By now, the computing resources needed for hashing blocks in Bitcoin, are tremendous and far exceed the computing power of the world’s greatest supercomputers. Energy use for mining is comparable to the power consumption of some countries and it continues to grow \cite{energy}. In 2012, in order to mitigate these shortcomings, the PPCoin (now known as PeerCoin)  cryptocurrency became the first to utilize an alternative consensus algorithm, Proof-of-Stake (PoS) \cite{Ppcoin}. In PoS consensus networks, the probability of creating a new block depends on the volume of tokens in a participant’s account. PoS also turns out to have several drawbacks and in its current state, according to a number of experts, cannot serve as an adequate replacement to PoW \cite{Demeester}, \cite{Poelstra}. One of the major weaknesses of PoS is that it additionally motivates users to concentrate all funds in one place or with one user, which leads to centralization of the network. The next iteration of PoS was introduced as the Delegated Proof-of-Stake (DPoS) \cite{dantheman}. Here network members are divided into two groups: members who delegate the authority to create blocks and validate transactions, and validators (witnesses). This partition provides better scalability and efficiency. Nevertheless, in DPoS there still remains the problem of motivation for a participant to use their assets actively instead of accumulating them, and that has a negative impact on the growth and governability of the network. The Proof-of-Importance consensus algorithm (PoI), first introduced in the NEM cryptocurrency \cite{nem}, which incentivizes network participants' activity. The major departure from PoS is that block generation probability and reward distribution depends not only on the volume of a user's deposits but also on the participant's activity rate and reputation. Thus, the algorithm motivates users to be more active by participating in  more transactions and contributing to the network growth. Despite all its merits, POI has some shortcomings in efficiency. 
+By now, the computing resources needed for hashing blocks in Bitcoin, are tremendous and far exceed the computing power of the world’s greatest supercomputers. Energy use for mining is comparable to the power consumption of some countries and it continues to grow \cite{energy}. In 2012, in order to mitigate these shortcomings, the PPCoin (now known as PeerCoin)  cryptocurrency became the first to utilize an alternative consensus algorithm, Proof-of-Stake (PoS) \cite{Ppcoin}. In PoS consensus networks, the probability of creating a new block depends on the volume of tokens in a participant’s account. PoS also turns out to have several drawbacks and in its current state, according to a number of experts, cannot serve as an adequate replacement to PoW \cite{Demeester}, \cite{Poelstra}. One of the major weaknesses of PoS is that it additionally motivates users to concentrate all funds in one place or with one user, which leads to centralization of the network. The next iteration of PoS was introduced as the Delegated Proof-of-Stake (DPoS) \cite{dantheman}. Here network members are divided into two groups: members who delegate the authority to create blocks and validate transactions, and validators (witnesses). This partition provides better scalability and efficiency. Nevertheless, in DPoS there still remains the problem of motivation for a participant to use their assets actively instead of accumulating them, and that has a negative impact on the growth and governability of the network. The Proof-of-Importance consensus algorithm (PoI), was first introduced in the NEM cryptocurrency \cite{nem}. PoI incentivizes network participants' activity. The major departure from PoS is that block generation probability and reward distribution depends not only on the volume of a user's deposits but also on the participant's activity rate and reputation. Thus, the algorithm motivates users to be more active by participating in  more transactions and contributing to the network growth. Despite all its merits, POI has some shortcomings in efficiency. 
 
 % На сегодня вычислительные ресурсы, расходуемые на хеширование блоков в биткоине, огромны и намного превышают мощности крупнейших суперкомпьютеров, а расход энергии на майнинг сопоставим с потреблением электроэнергии целых стран и продолжает расти \cite{energy}.
 % Для устранения данных недостатков был придуман альтернативный алгоритм консенсуса - Proof-of-Stake (PoS, доказательство доли), впервые реализованный в 2012 году в криптовалюте PPCoin (сейчас известна под названием PeerCoin) \cite{Ppcoin}. В сетях с консенсусом PoS вероятность сформировать следующий блок зависит от объема токенов на депозите участника сети. Данный алгоритм также обладает рядом недостатков и, по мнению ряда экспертов, в текущем виде не является адекватной заменой PoW \cite{Demeester} \cite{Poelstra}. Одним из важнейших недостатков PoS является то, что он дает дополнительную мотивацию к накоплению средств в одних руках, что способствует централизации сети.
@@ -49,13 +49,13 @@ By now, the computing resources needed for hashing blocks in Bitcoin, are tremen
 
 \subsection{Project goal}
 
-The major goal of Gravity is to create a distributed ledger data management protocol with effective power redistribution within the system, which motivates users to participate actively in network development and prevents centralization. Modern blockchain solutions have problems with scalability, security and efficiency, and to solve those problems, Gravity Protocol introduces the DPoI (Delegated Proof of Importance) Consensus Algorithm. This consensus algorithm combines the advantages of DPoS and PoI and implements a new feature of delegating validation rights to a limited number of accounts in order to achieve high levels of efficiency and scalability withinthe network, accounting for transaction activity of the protocol members, and leading to its further development.
+The major goal of Gravity is to create a distributed ledger data management protocol with effective power redistribution within the system, which motivates users to participate actively in network development and prevents centralization. Modern blockchain solutions have problems with scalability, security and efficiency, and to solve those problems, Gravity Protocol introduces the DPoI (Delegated Proof of Importance) Consensus Algorithm. This consensus algorithm combines the advantages of DPoS and PoI and implements a new feature of delegating validation rights to a limited number of accounts in order to achieve high levels of efficiency and scalability within the network, accounting for transaction activity of the protocol members, and leading to its further development.
 
 % Цель Gravity – создание протокола управления распределенным реестром с эффективным перераспределением влияния в системе, поощряющего пользователей принимать активное участие в развитии сети и препятствующего централизации. Для решения существующих в современных блокчейн решениях проблем с масштабируемостью, производительностью и безопасностью в протоколе Gravity реализован алгоритм достижения консенсуса DPoI (Delegated Proof of Importance). Алгоритм сочетает в себе достоинства DPoS и PoI, обладая преимуществами оных, реализует возможность делегирования права валидации блоков ограниченному количеству аккаунтов для достижения высокой производительности и масштабируемости сети, учитывая транзакционную активность участников протокола, способствуя ее развитию. 
 
 \section{Gravity Protocol Consensus Algorithm Operating Principle}
 
-The Gravity consensus algorithm (Delegated Proof-of-Importance, DPoI) is based on the Graphene core consensus algorithm. In addition to the client's stake amount, our algorithm also considers the client's transactional activity. In Gravity Protocol, all of the participants have the option of delegating the right to validate blocks to a limited number of accounts. To prevent activity imitation or fraud between several affiliated accounts, the transaction graph is partitioned into clusters utilizing the SCAN algorithm. In general, the working principle of the Gravity Protocol Consensus Algorithm can be explained as follows.
+The Gravity consensus algorithm (Delegated Proof-of-Importance, DPoI) is based on the Graphene core consensus algorithm. In addition to the client's stake amount, our algorithm also considers the client's transactional activity. In Gravity Protocol, all of the participants have the option of delegating the right to validate blocks to a limited number of accounts. To prevent activity imitation or fraud between several affiliated accounts, the transaction graph is partitioned into clusters utilizing the SCAN algorithm  \cite{SCAN}. In general, the working principle of the Gravity Protocol Consensus Algorithm can be explained as follows.
 
 % Алгоритм консенсуса Gravity базируется на алгоритме Делегированное доказательство значимости (Delegated Proof of Importance, DPoI), основанном на изменённом ядре Graphene, учитывая дополнительно к доли владения узла его транзакционную активность. 
 % В протоколе Gravity всем аккаунта сети доступна возможность делегировать право валидировать блоки ограниченному кругу аккаунтов.
@@ -63,14 +63,14 @@ The Gravity consensus algorithm (Delegated Proof-of-Importance, DPoI) is based o
 
 \subsection{Gravity Index Calculation}
 
-Gravity Index, which is used in voting, and could be interpreted as an importance rating of an account i is calculated as follows: 
+Gravity Index, which is used in voting, and could be interpreted as an importance rating of an account \textit{i} is calculated as follows: 
 
 % Индекс значимости эккаунта (называемый также gravity индексом) вычисляется следующим образом:
 $$
 r_i = (1 - \omega) v_i + \omega \pi_i
 $$
 
-where $v_i$ is the stake volume index, $\pi_i$ is the activity index calculated with the NCDawareRank algorithm, $\omega$ is the weight coefficient. 
+Here $v_i$ is the stake volume index, $\pi_i$ is the activity index calculated with the NCDawareRank algorithm, $\omega$ is the weight coefficient. 
 
 % Здесь $v_i$ – индекс доли владения, $\pi_i$ – индекс активности, полученный с помощью алгоритма NCDAwareRank, $\omega$ — весовой коэффициент.
 
@@ -88,7 +88,7 @@ $$
 \boldsymbol{\pi}^{(i+1)} = ( \eta \boldsymbol{O} + \mu \boldsymbol{M} + ( 1 - \eta - \mu ) \boldsymbol{E} ) \boldsymbol{\pi}^{(i)}
 $$
 
-Where $\pi^{(i)}$ is a vector of account importance indexes values. The vector is normalized, i.e. the sum of its elements is 1. $\boldsymbol{O}$ is the outlink matrix, $\boldsymbol{M}$ is the interlevel proximity matrix. See the definitions of the matrices below. $\eta$ and $\mu$ are weight coefficients that determine contributions of the $\boldsymbol{O}$ and $\boldsymbol{M}$ matrices. Their sum must be less than 1. $\boldsymbol{E}$ is the teleportation matrix added to ensure the series is convergent. This is defined as follows:
+Here $\pi^{(i)}$ is a vector of account importance indexes values. The vector is normalized, i.e. the sum of its elements is 1. $\boldsymbol{O}$ is the outlink matrix, $\boldsymbol{M}$ is the interlevel proximity matrix. See the definitions of the matrices below. $\eta$ and $\mu$ are weight coefficients that determine contributions of the $\boldsymbol{O}$ and $\boldsymbol{M}$ matrices. Their sum must be less than 1. $\boldsymbol{E}$ is the teleportation matrix added to ensure the series is convergent. This is defined as follows:
 
 % $\pi^{(i)}$ -- вектор, каждый элемент которого -- рейтинг значимости эккаунта. Вектор нормированный, сумма его элементов равна 1.
 % $\boldsymbol{O}$ -- outlink-матрица, $\boldsymbol{M}$ – матрица межуровневой близости. Об определении этих матриц см. ниже.
@@ -99,7 +99,7 @@ $$
 \boldsymbol{E}=\frac{1}{N}\boldsymbol{e}
 $$
 
-where N is the number of accounts and $\boldsymbol{e}$ is the matrix in which all the elements are equal to 1, the calculation continues until for some i the following condition is fulfilled: 
+where \textit{N} is the number of accounts and $\boldsymbol{e}$ is the matrix in which all the elements are equal to 1, the calculation continues until for some i the following condition is fulfilled: 
 
 % где N -- количество эккаунтов, и $\boldsymbol{e}$ -- матрица, все элементы которой равны 1.
 % Вычисления продолжаются, пока при некотором i не будет выполнено условие:
@@ -108,7 +108,7 @@ $$
 norm(\boldsymbol{\pi}^{(i+1)}-\boldsymbol{\pi}^{(i)})<\varepsilon
 $$
 
-Here norm() is the vector norm defined as the sum of its elements, $\varepsilon$ is the predetermined calculation accuracy. As an initial approximation, $\pi_0$, a vector with all the elements equal to $\frac{1}{N}$ can be used.
+Here \textit{norm()} is the vector norm defined as the sum of its elements, $\varepsilon$ is the predetermined calculation accuracy. As an initial approximation, $\pi_0$, a vector with all the elements equal to $\frac{1}{N}$ can be used.
 
 % Здесь norm() - это норма вектора, определенная как сумма его элементов, $\varepsilon$ — заранее заданная точность вычислений. 
 % В качестве начального приближения, $\pi_0$, может быть использован вектор, все элементы которого равны $\frac{1}{N}$.
@@ -123,7 +123,7 @@ $$
 w_{ij}=\sum_{k|i \to j}a_k \exp{(lnK [\frac{h_k}{D}])}
 $$
 
-Where $a_k$ is the sum of transaction k, $h_k$ is the transaction depth (the block order number from the current point, also known as a block height),  $K$ and $D$ are transaction contribution decrease parameters, that define how much the contribution of each transaction decreases over time. The purpose of these parameters is that over every $D$ number of blocks, created after the given transaction, the transaction contribution decreases by $w'=Kw$. The sum is taken over all the transactions of a deposit from account i to account j. 
+where $a_k$ is the sum of transaction \textit{k}, $h_k$ is the transaction depth (the block order number from the current point, also known as a block height),  $K$ and $D$ are transaction contribution decrease parameters, that define how much the contribution of each transaction decreases over time. The purpose of these parameters is that over every $D$ number of blocks, created after the given transaction, the transaction contribution decreases by $w'=Kw$. The sum is taken over all the transactions of a deposit from account \textit{i} to account \textit{j}. 
 
 
 % Здесь $a_k$ – сумма k-й транзакции, $h_k$ – глубина  k-й транзакции (порядковый номер блока, отсчитанный от текущего момента), $K$ и  $D$ — параметры, определяющие, насколько уменьшается вклад каждой транзакции со временем. Смысл этих параметров в том, что каждые $D$ блоков, созданных после определенной транзакции, ее вклад уменьшается как $w'=Kw$.
@@ -133,8 +133,8 @@ Where $a_k$ is the sum of transaction k, $h_k$ is the transaction depth (the blo
 $$
 \hat{o}_{ij} = \begin{cases}
  w_{ji}-w_{ij}
- & \text{если $w_{ji}-w_{ij} > 0$,}\\
- 0 & \text{в ином случае.}
+ & \text{if $w_{ji}-w_{ij} > 0$,}\\
+ 0 & \text{otherwise.}
 \end{cases}
 $$
 
@@ -145,14 +145,14 @@ Then the matrix that was obtained  is normalized so that the sum of elements in 
 $$
 o_{ij} = \begin{cases}
  \frac{\hat{o}_{ij}} {\sum\limits_{j} \hat{o}_{ij}}
- & \text{если $\sum\limits_{j} \hat{o}_{ij}> 0$,}\\
+ & \text{if $\sum\limits_{j} \hat{o}_{ij}> 0$,}\\
  0 & \text{otherwise}
 \end{cases} 
 $$
 
 \subsection{Interlevel proximity matrix calculation}
 
-W is a set of all the accounts taken into the Importance Index calculation; W is a set divided into disjoint subsets $A_i$ called NCD-blocks (Nearly Completely Departed). See the SCAN algorithm description for details. For the given “account u”, “$G_u$” is the set of all the accounts that have received from “account u” a larger sum, than they have sent to “account u”. Then the set of proximal “accounts u” is defined as follows: 
+Let W is a set of all the accounts taken into the Importance Index calculation; W is a set divided into disjoint subsets $A_i$ called NCD-blocks (Nearly Completely Departed). See the SCAN algorithm description for details. For the given “account u”, “$G_u$” is the set of all the accounts that have received from “account u” a larger sum, than they have sent to “account u”. Then the set of proximal “accounts u” is defined as follows: 
 
 % Множество всех аккаунтов W, участвующих в расчете индекса значимости, разбивается на непересекающиеся подмножества $A_i$, называемые NCD-блоками (NCD – nearly completely departed). О принципе разбиения см. описание алгоритма SCAN. 
 % Для данного эккаунта u рассмотрим множество всех эккаунтов $G_u$, которые получили от эккаунта u большую сумму, чем оправили ему. Множество ближних эккаунтов u тогда определяется следующим образом:
@@ -168,8 +168,8 @@ The interlevel proximity matrix is defined as follows:
 $$
 M_{vu}=\begin{cases}
  \frac{1}{N_u |A_{(v)}|}
- & \text{если $v \in \chi_u$ ,}\\
- 0 & \text{в ином случае.}
+ & \text{if $v \in \chi_u$ ,}\\
+ 0 & \text{otherwise.}
 \end{cases}
 $$
 
@@ -179,7 +179,7 @@ Where $N_u$ is the number of NCD-blocks in $\chi_u$.
 
 \subsection{SCAN algorithm based graph partitioning into clusters}
 
-An indirected graph $W = \{V, E\}$ has every vertex representing a client, and every edge representing a non-zero element of the outlink matrix. The structure of the vertex v is the set of all the adjacent vertices:
+An indirected graph $W = \{V, E\}$ has every vertex representing a client, and every edge representing a non-zero element of the outlink matrix. The structure of the vertex $v$ is the set of all the adjacent vertices:
 
 % Построим ненаправленный граф $W = \{V, E\}$, в котором каждая вершина соответствует эккаунту, и каждое ребро – ненулевому элементу outlink-матрицы.
 % Структурой данной вершины v назовем множество всех соседних вершин:
@@ -196,7 +196,7 @@ $$
 \sigma(v,w)=\frac{ |\Gamma(v) \cap \Gamma(w)|}{\sqrt{|\Gamma(v)||\Gamma(w)|}}
 $$
 
-The vertex $\varepsilon$-neighborhood is a set of vertices for which...
+The vertex $\varepsilon$-neighborhood is a set of vertices for which
 
 % $\varepsilon$-окружением вершины назовем множество вершин такое, что
 
@@ -204,7 +204,7 @@ $$
 N_{\varepsilon}(v) = \{ w \in \Gamma(v) | \sigma(v,w) \ge \varepsilon \}
 $$
 
-The Core is a vertex for which the number of elements in the $\varepsilon$-neighborhood is more than $\mu$.
+The \textit{CORE} is a vertex for which the number of elements in the $\varepsilon$-neighborhood is more than $\mu$.
 
 % Ядром назовем вершину, у которой число элементов в $\varepsilon$-окружении больше некоторого порога $\mu$.
 
@@ -212,7 +212,7 @@ $$
 CORE_{\varepsilon,\mu}(v) \Leftrightarrow |N_{\varepsilon} (v)| \ge \mu
 $$
 
-Vertex w is directly structurally reachable from vertex v if...
+Vertex $w$ is directly structurally reachable from vertex $v$ if
 
 % Вершина w находится в прямой структурной доступности от вершины v, если
 
@@ -220,7 +220,7 @@ $$
 DirREACH(v,w) \Leftrightarrow CORE_{\varepsilon,\mu}(v) \vee w \in N_{\varepsilon}(v)
 $$
 
-Vertex w is structurally reachable from vertex v if...
+Vertex $w$ is structurally reachable from vertex $v$ if
 
 % Вершина w находится в структурной доступности от вершины v, если
 
@@ -228,7 +228,7 @@ $$
 REACH(v,w) \Leftrightarrow \exists v_1,...v_n \in V \forall i \in \{1,...n-1\}DirREACH(v_i,v_{i+1})
 $$
 
-Vertex v is structurally connected with vertex w if...
+Vertex $v$ is structurally connected with vertex $w$ if
 
 % Вершина v структурно соединена с вершиной w, если
 
@@ -236,7 +236,7 @@ $$
 CONNECT(v,w) \Leftrightarrow \exists u \in V REACH(u,v) \vee REACH(u,w)
 $$
 
-A cluster is a subset of vertices structurally connected to each other. It can show that every vertex can only belong to one cluster. A vertex can also belong to no cluster; in this case it can either be a hub if there are vertices belonging to two different clusters in its environment, otherwise it is an independent vertex.
+A cluster is a subset of vertices structurally connected to each other. It is possible to show that every vertex can only belong to one cluster. A vertex can also belong to no cluster; in this case it can either be a hub if there are vertices belonging to two different clusters in its environment, otherwise it is an independent vertex.
 
 % Подмножество вершин, каждая из которых структурно соединена совсем остальными, называется кластером. Можно показать, что каждая вершина может принадлежать только одному кластеру. Также вершина может не принадлежать ни к одному из кластеров, в этом случае она называется значимым узлом, если среди соседей этой вершины есть такие, которые принадлежат к двум разным кластерам, и отдельно стоящей вершиной в противном случае.
 
@@ -272,7 +272,7 @@ The amount of transactions processed directly depends on the available computing
 
 \section{Emission}
 
-Emission amount at launch is 1,000,000,000 protocol tokens, distributed to the original network accounts to start the protocol. The Gravity project implements adaptive emission. The emission volume is calculated regularly once, in a certain time interval, $t_0, t_1, ... t_i$, where $t_{i+1} = t_i + T$. The volume of emission depends on the network activity growth in the preceding time period T.
+Emission amount at launch is 1,000,000,000 protocol tokens, distributed to the original network accounts to start the protocol. The Gravity project implements adaptive emission. The emission volume is calculated regularly once, in a certain time interval, $t_0, t_1, ... t_i$, where $t_{i+1} = t_i + T$. The volume of emission depends on the network activity growth in the preceding time period $T$.
 
 % Стартовая эмиссия составляет 1000000000 токенов протокола, распространяется по изначальным аккаунтам сети для запуска функционирования протокола.   
 % В проекте Gravity используется динамическая эмиссия. Эмиссия производится регулярно, в моменты времени $t_0, t_1, ... t_i$, где $t_{i+1} = t_i + T$. Объем эмиссии зависит от роста активности сети за предыдущий период T.
@@ -287,7 +287,7 @@ $$
 w_{ij}(t_n)=\sum_{k|i \to j, t_k \in [t_{n-1}, t_n]}a_k
 $$
 
-Here $a_k$  is the amount in k-th transaction, $t_k$  the time at which k-th transaction was created. Summation is performed for all the transactions transferring any amount from account i to account j and created at the time frame from $t_{n-1}$ to $t_n$. 
+Here $a_k$  is the amount in k-th transaction, $t_k$  the time at which k-th transaction was created. Summation is performed for all the transactions transferring any amount from account $i$ to account $j$ and created at the time frame from $t_{n-1}$ to $t_n$. 
 
 In fact, each matrix element $w_{ij}$ represents a weight of connection between account $i$ and account $j$ in a given time frame. Next we need to calculate the matrix of connections $l$: 
 
@@ -300,8 +300,8 @@ In fact, each matrix element $w_{ij}$ represents a weight of connection between 
 $$
 l_{ij}(t_n) = \begin{cases}
  1
- & \text{если $w_{ji}(t_n)-w_{ij}(t_n) > 0$,}\\
- 0 & \text{в ином случае.}
+ & \text{if $w_{ji}(t_n)-w_{ij}(t_n) > 0$,}\\
+ 0 & \text{otherwise.}
 \end{cases}
 $$
 
@@ -321,7 +321,7 @@ In this way, activity is calculated as a number of connections between active ac
 
 Emission value depends on network activity growth.
 
-$E_T$ value is defined as follows, and it is the target value of emission. It defines the upper bound of the aggregate amount of the emission, that is achievable with the following activity value A:
+$E_T$ value is defined as follows, and it is the target value of emission. It defines the upper bound of the aggregate amount of the emission, that is achievable with the following activity value $A$:
 
 % Объем эмиссии зависит от роста активности сети.
 % 
@@ -334,8 +334,8 @@ $$
 $$
 E_T(t_n) = \begin{cases}
  E_T(t_{n-1}) + K_E \Delta A(t_n),
- & \text{если $\Delta A(t_n) > 0$,}\\
- 0 & \text{в ином случае.}
+ & \text{if $\Delta A(t_n) > 0$,}\\
+ 0 & \text{otherwise.}
 \end{cases}
 $$
 
@@ -355,7 +355,7 @@ $$
     E(t_n) = \lambda S(t_{n-1}) f \Big( \kappa \frac {E_T(t_n) - S(t_{n-1})}{\lambda S(t_{n-1})} \Big)
 $$
 
-Here $\lambda$ is the marginal growth of the token amount in the system S per one emission. It is defined through L, which specifies the marginal growth S in a year, expressed as a percentage:
+Here $\lambda$ is the marginal growth of the token amount in the system S per one emission. It is defined through $L$, which specifies the marginal growth $S$ in a year, expressed as a percentage:
 
 % Здесь $\lambda$ -- предельный рост количества токенов в системе S за один выпуск эмиссии. Он определяется из параметра L, который задает предельный рост S в год (выраженный в процентах):
 
@@ -363,7 +363,7 @@ $$
     \lambda = (1 + \frac{L}{100})^{1/N}-1
 $$
 
-Here N is the number of emission issues per year.
+Here $N$ is the number of emission issues per year.
 
 % Здесь N - количество выпусков эмиссии в год.
 
@@ -377,7 +377,7 @@ $\kappa$ is a coefficient between 0 to 1 and it defines the speed at which a ful
 
 \begin{figure}[h]
       \includegraphics[width=1\linewidth]{pictures/sigmoida.eps}
-      \caption{Сигмоидальная функция}
+      \caption{Sigmoidal function}
       \label{fig:sigmoida}
 \end{figure}
 
@@ -398,11 +398,12 @@ $\kappa$ is a coefficient between 0 to 1 and it defines the speed at which a ful
  \bibitem{Poelstra} Poelstra, A. (2014). Distributed consensus from proof of stake is impossible. URL: https://download.wpsoftware.net/bitcoin/old-pos.pdf
  \bibitem{dantheman} Dantheman. (2017). DPOS Consensus Algorithm - The Missing White Paper. URL: https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper
  \bibitem{nem} NEM Technical Reference. Version 1.2.1. February 23, 2018 URL: https://nem.io/wp-content/themes/nem/files/NEM\_techRef.pdf
+\bibitem{SCAN} Xiaowei Xu et al. (2007). SCAN: A Structural Clustering Algorithm for Networks. URL: http://www1.se.cuhk.edu.hk/~hcheng/seg5010/slides/p824-xu.pdf
 \end{thebibliography}
 
 \section {Appendix 1 Glossary of Terms}
 
-Gravity consensus algorithm (Delegated Proof-of-Importance, DPoI)
+\textbf{Gravity consensus algorithm (Delegated Proof-of-Importance, DPoI)}
 
 The consensus algorithm, which is based on a calculation of the Gravity Index of an account, which in turn depends on Stake Volume Index and Activity index
 

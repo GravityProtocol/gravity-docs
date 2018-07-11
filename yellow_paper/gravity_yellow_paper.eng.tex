@@ -74,9 +74,10 @@ Here $v_i$ is the stake volume index, $\pi_i$ is the activity index calculated w
 
 % Здесь $v_i$ – индекс доли владения, $\pi_i$ – индекс активности, полученный с помощью алгоритма NCDAwareRank, $\omega$ — весовой коэффициент.
 
-Stake volume index is based on the amount of tokens owned by the account, and represents balance relation to the total amount of tokens in the system. Thus, an account with non-zero balance has non-zero Gravity Index. Activity index depends on transaction history of the account. Activity index is calculated only for accounts with the balance exceeding the $A_0$ threshold. This value is not fixed and is determined by committee members. When calculating the account activity index only transactions with the amount of tokens higher than $T_0$ are taken into account. That value is also determined by the committee. 
+Stake volume index is based on the amount of tokens owned by the account, and represents balance relation to the total amount of tokens in the system. Thus, an account with non-zero balance has non-zero Gravity Index. Activity index depends on transaction history of the account. Activity index is calculated only for accounts with the balance exceeding the $A_0$ threshold. This value is not fixed and is determined by committee members. When calculating the account activity index only transactions with the amount of tokens higher than $T_0$ are taken into account. That value is also determined by the committee. Hidden transactions are not included. Ancivity index depends on transactions, creation time of which lays in some time interval. The duration of this interval is $W$ blocks. Contribution of every transaction decreases exponentially.
 
-% Индекс доли владения определяется количеством токенов, принадлежащих эккаунту, и представляет собой отношение баланса эккаунта к общему количеству токенов в системе. Таким образом, у любого эккаунта с ненулевым балансом будет ненулевой индекс знасимости. Индекс активности зависит от истории транзакций, связанных с данным эккаунтом. Индекс активности вычисляется не для всех эккаунтов, а для тех, баланс которых превышает некоторый порог $A_0$. Это значение не является фиксированным, и определяется участниками комитета. Также при вычислении инекса активности учитываются не все транзакции, а только те, в которых сумма передаваемых токенов превышает порог $T_0$, который также определяется комитетом.
+% Индекс доли владения определяется количеством токенов, принадлежащих эккаунту, и представляет собой отношение баланса эккаунта к общему количеству токенов в системе. Таким образом, у любого эккаунта с ненулевым балансом будет ненулевой индекс значимости. Индекс активности зависит от истории транзакций, связанных с данным эккаунтом. Индекс активности вычисляется не для всех эккаунтов, а только для тех, баланс которых на момент вычисления индекса превышает некоторый порог $A_0$. Это значение не является фиксированным, и определяется участниками комитета. Также при вычислении инекса активности учитываются не все транзакции, а только те, в которых сумма передаваемых токенов превышает порог $T_0$, который также определяется комитетом. Скрытые транзакции не учитываются при вычислении индекса активности. Учитываются транзакции не за все время, но только те, которые попадают во временное окно продолжительностью $W$ блоков. Вклад каждой каждой транзакции уменьшается со временем экспоненциально.
+
 
 \subsection{NCDAwareRank Algorithm}
 
@@ -120,15 +121,16 @@ The outlink matrix $O$ is calculated as follows: First the weight matrix is calc
 % Outlink-матрица $O$ вычисляется следующим образом. Сначала вычисляется матрица весов:
 
 $$
-w_{ij}=\sum_{k|i \to j}a_k \exp{(lnK [\frac{h_k}{D}])}
+w_{ij}=\sum_{k|i \to j, {h_k \ge H_0} \land {h_k \le H_0+W}} \theta ( a_k - T_0 ) \theta ( s_i - A_0 ) \theta ( s_j - A_0 ) a_k \exp{(lnK [\frac{h_k}{D}])}
 $$
 
-where $a_k$ is the sum of transaction \textit{k}, $h_k$ is the transaction depth (the block order number from the current point, also known as a block height),  $K$ and $D$ are transaction contribution decrease parameters, that define how much the contribution of each transaction decreases over time. The purpose of these parameters is that over every $D$ number of blocks, created after the given transaction, the transaction contribution decreases by $w'=Kw$. The sum is taken over all the transactions of a deposit from account \textit{i} to account \textit{j}. 
+where $a_k$ is the sum of transaction \textit{k}, $h_k$ is the transaction depth (the block order number from the current point, also known as a block height),  $K$ and $D$ are transaction contribution decrease parameters, that define how much the contribution of each transaction decreases over time. The purpose of these parameters is that over every $D$ number of blocks, created after the given transaction, the transaction contribution decreases by $w'=Kw$. The sum is taken over all the transactions of a deposit from account \textit{i} to account \textit{j}, depth of which lays between $H_0$ and $H_0+W$. $H_0$ and $W$ are parameters, its values are equal $H_0=2419200$ and $W=1000$ currently in the testnet. So, only transactions from time gap, duration of which is $W$ blocks, contribute to activity index.
 
 
 % Здесь $a_k$ – сумма k-й транзакции, $h_k$ – глубина  k-й транзакции (порядковый номер блока, отсчитанный от текущего момента), $K$ и  $D$ — параметры, определяющие, насколько уменьшается вклад каждой транзакции со временем. Смысл этих параметров в том, что каждые $D$ блоков, созданных после определенной транзакции, ее вклад уменьшается как $w'=Kw$.
-% 
-% Суммирование ведется по всем транзакциям, перемещающим некоторую сумму с эккаунта i на эккаунт j.
+
+% Суммирование ведется по всем транзакциям, перемещающим некоторую сумму с эккаунта i на эккаунт j, глубина которых лежит в промежутке между $H_0$ и $H_0+W$. Здесь $H_0$ и $W$ - параметры, для тестнета используются значения $H_0=2419200$ (что соответствует 28 дням при продолжительности блока в 1 секунду) и $W=1000$. Таким образом, при вычисления индекса активности учитывается только транзакции, попадающие в окно шириной $W$ блоков, последний блок которого отстоит от текущего блока на $H_0$.
+
 
 $$
 \hat{o}_{ij} = \begin{cases}
@@ -144,18 +146,19 @@ Then the matrix that was obtained  is normalized so that the sum of elements in 
 
 $$
 o_{ij} = \begin{cases}
- \frac{\hat{o}_{ij}} {\sum\limits_{j} \hat{o}_{ij}}
- & \text{if $\sum\limits_{j} \hat{o}_{ij}> 0$,}\\
+ \frac{\hat{o}_{ij}} {\sum\limits_{k} \hat{o}_{kj}}
+ & \text{if $\sum\limits_{k} \hat{o}_{kj}> 0$,}\\
  0 & \text{otherwise}
 \end{cases} 
 $$
 
 \subsection{Interlevel proximity matrix calculation}
 
-Let W is a set of all the accounts taken into the Importance Index calculation; W is a set divided into disjoint subsets $A_i$ called NCD-blocks (Nearly Completely Departed). See the SCAN algorithm description for details. For the given “account u”, “$G_u$” is the set of all the accounts that have received from “account u” a larger sum, than they have sent to “account u”. Then the set of proximal “accounts u” is defined as follows: 
+Let W is a set of all the accounts taken into the Importance Index calculation; W is a set divided into disjoint subsets $A_i$ called NCD-blocks (Nearly Completely Departed). See the SCAN algorithm description for details. For the given “account u”, “$G_u$” is the set of all the accounts, for which the according member of outlink matrix is greater than zero: $o_{uv} > 0$. Then the set of proximal “accounts u” is defined as follows: 
 
 % Множество всех аккаунтов W, участвующих в расчете индекса значимости, разбивается на непересекающиеся подмножества $A_i$, называемые NCD-блоками (NCD – nearly completely departed). О принципе разбиения см. описание алгоритма SCAN. 
-% Для данного эккаунта u рассмотрим множество всех эккаунтов $G_u$, которые получили от эккаунта u большую сумму, чем оправили ему. Множество ближних эккаунтов u тогда определяется следующим образом:
+
+%Для данного эккаунта u рассмотрим множество всех эккаунтов $G_u$, такое, что для любого эккаунта $v \in G_u$ соответствующий член outlink-матрицы больше нуля: $o_{uv} > 0$. Множество ближних эккаунтов u тогда определяется следующим образом:
 
 $$
 \chi_u = \bigcup_{v \in \{u\} \cup G_u} A_{(v)}
@@ -334,8 +337,8 @@ $$
 $$
 E_T(t_n) = \begin{cases}
  E_T(t_{n-1}) + K_E \Delta A(t_n),
- & \text{if $\Delta A(t_n) > 0$,}\\
- 0 & \text{otherwise.}
+ & \text{when $\Delta A(t_n) > 0$,}\\
+ E_T(t_{n-1}) & \text{otherwise}
 \end{cases}
 $$
 
@@ -352,7 +355,7 @@ Emission value, which is issued at a certain time $t_n$, is defined by formula:
 % Величина эмиссии, выпускаемая в момент времени t, вычисляется по формуле:
 
 $$
-    E(t_n) = \lambda S(t_{n-1}) f \Big( \kappa \frac {E_T(t_n) - S(t_{n-1})}{\lambda S(t_{n-1})} \Big)
+    E(t_n) = \lambda S(t_{n-1}) f \Big( \kappa \frac {E_T(t_n) - E_S(t_{n-1})}{\lambda S(t_{n-1})} \Big)
 $$
 
 Here $\lambda$ is the marginal growth of the token amount in the system S per one emission. It is defined through $L$, which specifies the marginal growth $S$ in a year, expressed as a percentage:
@@ -375,6 +378,15 @@ $\kappa$ is a coefficient between 0 to 1 and it defines the speed at which a ful
 
 % $\kappa$ -- коэффициент от 0 до 1, определяющий скорость, с которой полная эмиссия приближается к целевой эмиссии $E_T$, в случае, если активность остается но одном уровне на протяжении длительного срока.
 
+Initial values of both $E_T$ and $E_S$ are zero:
+
+%Начальные значения $E_T$ и $E_S$ равны нулю:
+
+$$
+E_T(t_0)=0, E_S(t_0)=0
+$$
+
+
 \begin{figure}[h]
       \includegraphics[width=1\linewidth]{pictures/sigmoida.eps}
       \caption{Sigmoidal function}
@@ -382,7 +394,7 @@ $\kappa$ is a coefficient between 0 to 1 and it defines the speed at which a ful
 \end{figure}
 
 
-\addcontentsline{toc}{section}{Список литературы}
+\addcontentsline{toc}{section}{Bibliography}
 \begin{thebibliography}{99}
  \bibitem{Metcalfe} Metcalfe, B. (2013). Metcalfe's law after 40 years of ethernet. Computer, 46(12), 26-31. URL: http://ieeexplore.ieee.org/abstract/document/6636305/
  \bibitem{Lamport} Lamport, L., Shostak, R., Pease, M. (1982). The Byzantine generals problem. ACM Transactions on Programming Languages and Systems (TOPLAS), 4(3), 382-401. URL: https://www.microsoft.com/en-us/research/uploads/prod/2016/12/The-Byzantine-Generals-Problem.pdf

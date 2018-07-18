@@ -18,20 +18,23 @@ cd witness_node
 nano data/config.ini
 ```
 
-4. Add the seed nodes
+4. Add the seed nodes and a checkpoint at block 3079462
 
 ```
 ...
 # P2P nodes to connect to on startup (may specify multiple times)
-seed-node = testnet-seed-0.gravityprotocol.org:10111
-seed-node = testnet-seed-1.gravityprotocol.org:4623
-seed-node = testnet-seed-2.gravityprotocol.org:4623
-seed-node = testnet-seed-3.gravityprotocol.org:4623
-seed-node = testnet-seed-4.gravityprotocol.org:4623
-seed-node = testnet-seed-5.gravityprotocol.org:4623
-seed-node = testnet-seed-6.gravityprotocol.org:4623
-seed-node = testnet-seed-7.gravityprotocol.org:4623
-seed-node = testnet-seed-8.gravityprotocol.org:4623
+seed-node = testnet-seed-0.gravity.io:4623
+seed-node = testnet-seed-1.gravity.io:4623
+seed-node = testnet-seed-2.gravity.io:4623
+seed-node = testnet-seed-3.gravity.io:4623
+seed-node = testnet-seed-4.gravity.io:4623
+seed-node = testnet-seed-5.gravity.io:4623
+seed-node = testnet-seed-6.gravity.io:4623
+seed-node = testnet-seed-7.gravity.io:4623
+seed-node = testnet-seed-8.gravity.io:4623
+...
+# Pairs of [BLOCK_NUM,BLOCK_ID] that should be enforced as checkpoints.
+checkpoint = [3079462, 002efd26658683618e4a6ca886b6383b8119fc9f]
 ...
 ```
 

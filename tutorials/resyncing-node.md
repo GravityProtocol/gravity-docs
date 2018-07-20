@@ -2,7 +2,7 @@
 
 ## Witnesses:
 
-**1\. To avoid missing the blocks, witnesses have to use the [backup node](https://github.com/GravityProtocol/gravity-docs/blob/master/running-backup-node.md)**  
+**1\. To avoid missing the blocks, witnesses have to use the [backup node](https://github.com/GravityProtocol/gravity-docs/blob/master/tutorials/running-backup-node.md)**  
 Make sure that your backup node is running.
 
 **2\. In the cli_wallet change your witness signing key to backup key**

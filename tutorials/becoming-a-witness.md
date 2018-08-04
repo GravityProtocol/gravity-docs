@@ -3,7 +3,7 @@
 1. Сreate an account in the [web wallet](https://wallet.gravityprotocol.org) and copy the account name and the private active key from there
 
 2. Pull the last docker build from hub.docker.com 
-([see this tutorial](https://github.com/GravityProtocol/gravity-docs/blob/master/running%20node%20with%20docker.md))
+([see this tutorial](https://github.com/GravityProtocol/gravity-docs/blob/master/tutorials/running%20node%20with%20docker.md))
 
 3. Run the docker package in detached mode
 ```

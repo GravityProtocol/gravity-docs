@@ -67,10 +67,10 @@ Gravity Index, which is used in voting, and could be interpreted as an importanc
 
 % Индекс значимости эккаунта (называемый также gravity индексом) вычисляется следующим образом:
 $$
-r_i = (1 - \omega) v_i + \omega \pi_i
+r_i = (1 - \omega_a - \omega_s) v_i + \omega_a \pi_i + \omega_s \sigma_i
 $$
 
-Here $v_i$ is the stake volume index, $\pi_i$ is the activity index calculated with the NCDawareRank algorithm, $\omega$ is the weight coefficient. 
+Here $v_i$ is the stake volume index, $\pi_i$ is the finance activity index calculated with the NCDawareRank algorithm, $\sigma_i$ if the social network activity index, $\omega_a$ and $\omega_s$ is the weight coefficients. 
 
 % Здесь $v_i$ – индекс доли владения, $\pi_i$ – индекс активности, полученный с помощью алгоритма NCDAwareRank, $\omega$ — весовой коэффициент.
 
@@ -242,6 +242,79 @@ $$
 A cluster is a subset of vertices structurally connected to each other. It is possible to show that every vertex can only belong to one cluster. A vertex can also belong to no cluster; in this case it can either be a hub if there are vertices belonging to two different clusters in its environment, otherwise it is an independent vertex.
 
 % Подмножество вершин, каждая из которых структурно соединена совсем остальными, называется кластером. Можно показать, что каждая вершина может принадлежать только одному кластеру. Также вершина может не принадлежать ни к одному из кластеров, в этом случае она называется значимым узлом, если среди соседей этой вершины есть такие, которые принадлежат к двум разным кластерам, и отдельно стоящей вершиной в противном случае.
+
+\subsection{Social network activity index}
+
+Gravity blockchain is integrated with social network. Every account may have social relations with any other account and may have some content belonging to it. Accounts and content objects with relations between them form a graph. Every account and content object obtains rate depending on involving into social relations. We denote this rate as social network activity index. It is contrubute to gravity index.
+
+Every type of node has its own social network activity index. We denote as $\boldsymbol{\sigma_A}$ the vector of account indices and as $\boldsymbol{\sigma_C}$ the vector of content indices. Both vectors are normalized to 1:
+
+$$
+\sum_i{\sigma_{Ai}} = 1, \sum_i{\sigma_{Ci}} = 1
+$$
+
+There are many kinds of relations between nodes. Every kind of relation has several properties:
+
+\begin{enumerate}
+    \item {Type of the source node (account or content)};
+    \item {Type of the target node (account or content)};
+    \item {Direct weight};
+    \item {Reverse weight};
+    \item {Height (age of relation, measured in blocks)};
+    \item {Flag "decayable" that controls the dependence of weights on time}.
+\end{enumerate}
+
+So, a relation can connect either nodes of the same type or nodes of different types. A relation also can be uni-directional or bi-directional.
+
+There are following kinds of relations:
+
+\begin{enumerate}
+    \item { Ownership: bi-directional relation bounding account and content;}
+    \item { Like: uni-directional relation from account to content;}
+    \item { Dislike: uni-directional relation from account to content;}
+    \item { Follow: uni-directional relation between two accounts; }
+    \item { Trust: uni-directional relation between two accounts. }
+\end{enumerate}
+
+
+Following recurrent equation is used for social network activity index calculation:
+$$
+    \boldsymbol{\sigma}^{(n+1)}_A = \mu (\boldsymbol{o}_{AA} \boldsymbol{\sigma}^{(n)}_A + \boldsymbol{o}_{AC} \boldsymbol{\sigma}^{(n)}_C) + (1-\mu) (\boldsymbol{T}_{AA} \boldsymbol{\sigma}^{(n)}_A + \boldsymbol{T}_{AC} \boldsymbol{\sigma}^{(n)}_C)
+$$
+$$
+    \boldsymbol{\sigma}^{(n+1)}_C = \mu (\boldsymbol{o}_{CA} \boldsymbol{\sigma}^{(n)}_A + \boldsymbol{o}_{CC} \boldsymbol{\sigma}^{(n)}_C) + (1-\mu) (\boldsymbol{T}_{CA} \boldsymbol{\sigma}^{(n)}_A + \boldsymbol{T}_{CC} \boldsymbol{\sigma}^{(n)}_C)
+$$
+
+Where $\boldsymbol{o}_{XX}$ is outlink matrices, $\boldsymbol{T}_{XX}$ is teleportation matrices, $\mu$ is numeric koefficient.
+
+In order to construct outlink matrices, we shoud former constrruct weight matrices:
+
+$$
+    w_{XYij} = \sum_{k|(X,i) \to (Y,j)} \alpha_k W^R_k + \sum_{k|(Y,j) \to (X,i)} \alpha_k W^D_k
+$$
+where $W^D_k$ and $W^R_k$ are direct and reverse weights of kth relation. The summation is over all relations connecting a node i of type X and a node j of type Y for reverse weights (and vice versa for direct weights).
+
+$\alpha_k$ is decay multiplier for relation k. 
+
+$$
+\alpha_k = \begin{cases}
+ \exp{(lnK [\frac{h_k}{D}])}
+ & \text{if flag "decayable" is set}\\
+ 1 & \text{otherwise}
+\end{cases} 
+$$
+where K and D are global parameters, and $h_k$ is height of the kth relation.
+
+Further, outlink matrices can be calculated with normalization every column to 1:
+
+$$
+o_{XYij} = \begin{cases}
+ \frac{w_{XYij}} {\sum\limits_{k} w_{XYkj}}
+ & \text{if $\sum\limits_{k} w_{XYkj}> 0$,}\\
+ 0 & \text{otherwise}
+\end{cases} 
+$$
+
 
 \subsection{The use of Gravity Index in the system}
 
